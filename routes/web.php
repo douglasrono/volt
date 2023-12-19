@@ -1,41 +1,45 @@
 <?php
 
-use App\Http\Livewire\BootstrapTables;
-use App\Http\Livewire\Components\Buttons;
-use App\Http\Livewire\Components\Forms;
-use App\Http\Livewire\Components\Modals;
-use App\Http\Livewire\Components\Notifications;
-use App\Http\Livewire\Components\Typography;
-use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Lock;
+use App\Http\Livewire\Index;
+use App\Http\Livewire\Users;
 use App\Http\Livewire\Err404;
 use App\Http\Livewire\Err500;
+use App\Http\Livewire\Profile;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\LoginExample;
+use App\Http\Livewire\Transactions;
+use App\Http\Livewire\UpgradeToPro;
+use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\ResetPassword;
 use App\Http\Livewire\ForgotPassword;
-use App\Http\Livewire\Lock;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Profile;
-use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\ForgotPasswordExample;
-use App\Http\Livewire\Index;
-use App\Http\Livewire\LoginExample;
 use App\Http\Livewire\ProfileExample;
-use App\Http\Livewire\RegisterExample;
-use App\Http\Livewire\Transactions;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\BootstrapTables;
+use App\Http\Livewire\RegisterExample;
+use App\Http\Livewire\Components\Forms;
+use App\Http\Controllers\UserController;
+use App\Http\Livewire\Components\Modals;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RiderController;
+use App\Http\Livewire\Components\Buttons;
+use App\Http\Controllers\DialerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopifyController;
 use App\Http\Livewire\ResetPasswordExample;
-use App\Http\Livewire\UpgradeToPro;
-use App\Http\Livewire\Users;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MerchantController;
+use App\Http\Livewire\Components\Typography;
+use App\Http\Livewire\ForgotPasswordExample;
+use App\Http\Controllers\TelematicController;
+use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\WordpressController;
+use App\Http\Controllers\GoogleSheetController;
+use App\Http\Controllers\WooCommerceController;
+use App\Http\Livewire\Components\Notifications;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::redirect('/', '/login');
 
@@ -68,4 +72,32 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms', Forms::class)->name('forms');
     Route::get('/modals', Modals::class)->name('modals');
     Route::get('/typography', Typography::class)->name('typography');
+
+    Route::get('/orders', [OrderController::class,'index'])->name('orders');
+
+    Route::get('/dialer', [DialerController::class,'index'])->name('dialer');
+
+    Route::get('/products', [ProductController::class,'index'])->name('products');
+
+    Route::get('/warehouse', [WarehouseController::class,'index'])->name('warehouses');
+
+    Route::get('/customers', [CustomerController::class,'index'])->name('customers');
+
+    Route::get('/users', [UserController::class,'index'])->name('users');
+
+    Route::get('/riders', [RiderController::class,'index'])->name('riders');
+
+    Route::get('/merchants', [MerchantController::class,'index'])->name('merchants');
+
+    Route::get('/googlesheets', [GoogleSheetController::class,'index'])->name('googlesheets');
+
+    Route::get('/shopify', [ShopifyController::class,'index'])->name('shopify');
+
+    Route::get('/woocommerce', [WooCommerceController::class,'index'])->name('woocommerce');
+
+    Route::get('/wordpress', [WordpressController::class,'index'])->name('wordpress');
+
+    Route::get('/waybills', [OrderController::class,'waybills'])->name('waybills');
+
+    Route::get('/telematics', [TelematicController::class,'index'])->name('telematics');
 });
